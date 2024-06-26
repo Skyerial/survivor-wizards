@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=3 uid="uid://bl5fcipk4k5d1"]
+
+[ext_resource type="Script" path="res://Scripts/choice_btns.gd" id="3_p1h20"]
+[ext_resource type="Script" path="res://Scripts/health_bar.gd" id="3_rjh5g"]
+[ext_resource type="Script" path="res://Scripts/exp_bar.gd" id="4_cti0o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7a48l"]
+bg_color = Color(0.0192506, 0.653175, 0.829665, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_boqpk"]
+bg_color = Color(0.81094, 0, 0.144683, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="exp_bar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.94
+anchor_right = 0.7
+anchor_bottom = 0.98
+offset_left = -0.568024
+offset_top = -0.0640259
+offset_right = -0.296021
+offset_bottom = 1.01593
+theme_override_styles/fill = SubResource("StyleBoxFlat_7a48l")
+script = ExtResource("4_cti0o")
+
+[node name="health_bar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.89
+anchor_right = 0.7
+anchor_bottom = 0.932
+offset_left = -0.0640259
+offset_top = 0.143982
+offset_right = 0.191895
+offset_bottom = -20.808
+size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxFlat_boqpk")
+value = 100.0
+script = ExtResource("3_rjh5g")
+
+[node name="choice_btns" type="HBoxContainer" parent="CanvasLayer" groups=["UI"]]
+process_mode = 3
+visible = false
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.2
+anchor_right = 0.9
+anchor_bottom = 0.7
+offset_right = -0.32
+offset_bottom = -0.176003
+theme_override_constants/separation = 50
+alignment = 1
+script = ExtResource("3_p1h20")
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="CanvasLayer/choice_btns"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+ shooting speed"
+
+[node name="Button2" type="Button" parent="CanvasLayer/choice_btns"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+ damage"
+
+[node name="Button3" type="Button" parent="CanvasLayer/choice_btns"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+ range"
+
+[connection signal="pressed" from="CanvasLayer/choice_btns/Button" to="CanvasLayer/choice_btns" method="_on_button_pressed"]

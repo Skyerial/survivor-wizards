@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://duaypsgteddy1"]
+
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_7lv6e"]
+[ext_resource type="Texture2D" uid="uid://ug2rde5im6x" path="res://Assets/Players/Wizard/wizard x1.png" id="1_yt4y1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dqafa"]
+height = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tyr3"]
+atlas = ExtResource("1_yt4y1")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdqlg"]
+atlas = ExtResource("1_yt4y1")
+region = Rect2(32, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t4to"]
+atlas = ExtResource("1_yt4y1")
+region = Rect2(64, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyvld"]
+atlas = ExtResource("1_yt4y1")
+region = Rect2(96, 256, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yikg6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tyr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdqlg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t4to")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyvld")
+}],
+"loop": true,
+"name": &"bullet_flying",
+"speed": 8.0
+}]
+
+[node name="bullet" type="Node2D"]
+script = ExtResource("1_7lv6e")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_dqafa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yikg6")
+animation = &"bullet_flying"
+frame_progress = 0.226351
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

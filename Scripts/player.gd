@@ -81,3 +81,8 @@ func update_xp():
         experience = 0
         xp_changed.emit()
         enable_choices.emit()
+
+
+func _on_animated_sprite_2d_animation_finished():
+    if $AnimatedSprite2D.get_animation() == "death":
+        get_tree().change_scene_to_file("res://Scenes/death_screen.tscn")

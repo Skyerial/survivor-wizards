@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqnyuj5tmt015"]
+
+[ext_resource type="Script" path="res://Scripts/death_screen.gd" id="1_5tp7t"]
+
+[sub_resource type="Theme" id="Theme_fdras"]
+default_font_size = 50
+
+[node name="death_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5tp7t")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.39
+anchor_top = 0.2
+anchor_right = 0.62
+anchor_bottom = 0.32
+offset_left = -0.152008
+offset_top = 0.00798035
+offset_right = -0.200012
+offset_bottom = 0.319977
+theme = SubResource("Theme_fdras")
+text = "YOU DIED!"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.8
+anchor_right = 0.6
+anchor_bottom = 0.9
+offset_left = 0.0479736
+offset_top = 0.00799561
+offset_right = 0.0879517
+offset_bottom = -0.240051
+text = "To Main Menu"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
